@@ -1,0 +1,11 @@
+name: Events
+version: 1.0
+authors: [Shad0wsense]
+main: dk.shadow.Events
+depend: [Essentials]
+description: Events
+api-version: 1.8
+commands:
+  scrambleEvent:
+    description: Scramble commands.
+    aliases: scramble

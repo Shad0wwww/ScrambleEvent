@@ -2,23 +2,26 @@ package dk.shadow;
 
 import dk.shadow.commands.TypeEventCommand;
 import dk.shadow.listeners.ChatListener;
-import dk.shadow.utils.Chat;
 import dk.shadow.utils.Config;
+
+import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 
-public class TypeEvent extends JavaPlugin {
-
-    public static TypeEvent instance;
+public class Events extends JavaPlugin {
+    public static Economy econ = null;
+    public static Events instance;
     private static PluginManager pluginManager;
-    public static Config config;
-    public static FileConfiguration configYML;
-
+    public static Config config, wins;
+    public static FileConfiguration configYML, winsYML;
 
 
     @Override
@@ -27,29 +30,55 @@ public class TypeEvent extends JavaPlugin {
         instance = this;
         getLogger().log(Level.INFO, "Loading... Please report any errors on discord: Shad0w#2143!");
 
-        //WebSockett
-
-
+        //CONFIGS -------------------------------
+        //Config.yml
         if (!(new File(getDataFolder(), "config.yml")).exists())
             saveResource("config.yml", false);
 
-
         config = new Config(this, null, "config.yml");
-
         configYML = config.getConfig();
 
-        getCommand("TypeEvent").setExecutor(new TypeEventCommand());
+        //Wins.yml
+        if (!(new File(getDataFolder(), "wins.yml")).exists())
+            saveResource("wins.yml", false);
+
+        wins = new Config(this, null, "wins.yml");
+        winsYML = wins.getConfig();
+
+        //Command executers
+        getCommand("scrambleEvent").setExecutor(new TypeEventCommand());
         //getCommand("buy").setExecutor(new BuyCommand());
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 
+        if (!setupEconomy() ) {
+            Bukkit.getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            Bukkit.getLogger().severe(String.format(String.valueOf(getServer().getPluginManager().getPlugin("Vault"))));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
+        setupEconomy();
 
     }
+    @Override
+    public void onDisable() {
+        wins.saveConfig();
+    }
 
-    public static TypeEvent getInstance(){
+    public static Events getInstance(){
         return instance;
     }
 
-
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
 
 }

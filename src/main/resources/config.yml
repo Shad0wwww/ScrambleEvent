@@ -1,0 +1,26 @@
+#Version 1.0
+startScrambleEvent:
+  - "&8&l[ &a&lSCRAMBLEEVENT &8&l] ➥"
+  - "&fI skal skrive &b%word%"
+
+
+vandtScrambleEvent:
+  - "&8&l[ &a&lSCRAMBLEEVENT &8&l] &c%player% &fvandt ScrambleEventet og modtog &a%penge%"
+
+permission: "event.admin"
+permissionDenied: "&8&l[ &a&lSCRAMBLEEVENT &8&l] &cDu har ikke adgang."
+
+beløning:
+  random:
+    boolean: true
+    penge:
+      min: 0
+      max: 30000
+      default: 300
+
+
+words:
+  - iskoldcool
+  - Shad0wsense
+  - Nydt
+  - LildaddyD
