@@ -37,3 +37,7 @@ skript-reflect.jar
 Essentials.jar
 Vault.jar
 ```      
+
+
+
+*Copyright © 2022 by Shad0wsense. All rights reserved. This material may not be published, broadcast, rewritten or redistributed without permission.*
