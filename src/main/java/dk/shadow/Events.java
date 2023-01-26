@@ -2,6 +2,7 @@ package dk.shadow;
 
 import dk.shadow.commands.TypeEventCommand;
 import dk.shadow.listeners.ChatListener;
+import dk.shadow.task.AutoStartScramble;
 import dk.shadow.utils.Config;
 
 import net.milkbowl.vault.economy.Economy;
@@ -10,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.util.HashMap;
@@ -58,7 +60,10 @@ public class Events extends JavaPlugin {
         }
 
         setupEconomy();
-
+        AutoStartScramble autoStartScramble = new AutoStartScramble();
+        if (Events.config.getConfig().getBoolean("autoscramblestart.enabled")) {
+            autoStartScramble.runTaskTimer(instance, 0l, config.getConfig().getInt("autoscramblestart.delay") * 20L);
+        }
     }
     @Override
     public void onDisable() {

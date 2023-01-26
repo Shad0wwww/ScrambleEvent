@@ -1,4 +1,6 @@
-#Version 1.0
+#Version 1.1
+#Copyright © 2023 by Shad0wsense. All rights reserved. This material may not be published, broadcast, rewritten or redistributed without permission.
+
 startScrambleEvent:
   - "&8&l[ &a&lSCRAMBLEEVENT &8&l] ➥"
   - "&fI skal skrive &b%word%"
@@ -18,6 +20,10 @@ beløning:
       max: 30000
       default: 300
 
+autoscramblestart:
+  #100 = 5 sekunder
+  delay: 3000
+  enabled: false
 
 words:
   - iskoldcool
