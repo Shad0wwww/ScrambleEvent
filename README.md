@@ -8,6 +8,11 @@ Et plugin jeg har lavet til en superwaesome server, som hedder "spyd"
 scramble, scr og scrambleEvent
 ```
 
+**Permission for at bruge commanden:**
+```
+events.scramble 
+```
+
 **Hvordan får man wins i skript?:**
 
 ```
