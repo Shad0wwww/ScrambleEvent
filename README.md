@@ -20,4 +20,20 @@ command /getwinsdata:
       send "%{_v}% " to player
 ```
 
-      
+
+**Addons / plugins du skal bruge for at få pluginet til at virke med skript**
+
+```
+Essentials.jar
+Vault.jar
+skript.jar
+skript-reflect.jar
+```  
+
+
+**Addons / plugins du skal bruge for at få pluginet til at virke**
+
+```
+Essentials.jar
+Vault.jar
+```      
