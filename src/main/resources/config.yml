@@ -7,7 +7,7 @@ startScrambleEvent:
 vandtScrambleEvent:
   - "&8&l[ &a&lSCRAMBLEEVENT &8&l] &c%player% &fvandt ScrambleEventet og modtog &a%penge%"
 
-permission: "event.admin"
+
 permissionDenied: "&8&l[ &a&lSCRAMBLEEVENT &8&l] &cDu har ikke adgang."
 
 beløning:

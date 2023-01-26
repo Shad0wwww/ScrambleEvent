@@ -20,7 +20,7 @@ public class TypeEventCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player p = (Player) sender;
-        if (!sender.hasPermission(Objects.requireNonNull(Events.configYML.getString("permission")))){
+        if (!p.hasPermission("events.scramble")){
             sender.sendMessage(Chat.colored(Events.configYML.getString("permissionDenied")));
             return true;
         }
