@@ -33,6 +33,10 @@ public class Config {
                 this.configFile = new File(this.plugin.getDataFolder(), this.fileName);
             }
         }
+
+        //Auto typeevent start
+
+
         this.config = (FileConfiguration) YamlConfiguration.loadConfiguration(this.configFile);
     }
     public void saveConfig() {
@@ -43,4 +47,6 @@ public class Config {
             this.plugin.getLogger().log(Level.SEVERE, "Could not save config to" + this.configFile, ex);
         }
     }
+
+
 }

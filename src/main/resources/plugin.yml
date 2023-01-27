@@ -8,4 +8,4 @@ api-version: 1.8
 commands:
   scrambleEvent:
     description: Scramble commands.
-    aliases: scramble, scr
+    aliases: [scramble, scr]

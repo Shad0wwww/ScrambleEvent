@@ -21,9 +21,10 @@ beløning:
       default: 300
 
 autoscramblestart:
-  #100 = 5 sekunder
-  delay: 3000
-  enabled: false
+  #300 = 5 Min
+  #600 = 10 Min
+  delay: 1800
+  enabled: true
 
 words:
   - iskoldcool

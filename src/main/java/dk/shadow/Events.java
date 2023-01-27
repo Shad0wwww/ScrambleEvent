@@ -58,12 +58,9 @@ public class Events extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
-
+        startScrambleEventAuto();
         setupEconomy();
-        AutoStartScramble autoStartScramble = new AutoStartScramble();
-        if (Events.config.getConfig().getBoolean("autoscramblestart.enabled")) {
-            autoStartScramble.runTaskTimer(instance, 0l, config.getConfig().getInt("autoscramblestart.delay") * 20L);
-        }
+
     }
     @Override
     public void onDisable() {
@@ -84,6 +81,15 @@ public class Events extends JavaPlugin {
         }
         econ = rsp.getProvider();
         return econ != null;
+    }
+
+    public static void startScrambleEventAuto() {
+        AutoStartScramble autoStartScramble = new AutoStartScramble();
+        System.out.println("config.getConfig().getBoolean(autoscramblestart.enabled) " + config.getConfig().getBoolean("autoscramblestart.enabled"));
+        if (config.getConfig().getBoolean("autoscramblestart.enabled")) {
+            System.out.println("65");
+            autoStartScramble.runTaskTimer(instance, 0L, config.getConfig().getInt("autoscramblestart.delay") * 20L);
+        }
     }
 
 }

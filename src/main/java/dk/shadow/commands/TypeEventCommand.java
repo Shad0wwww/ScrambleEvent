@@ -50,7 +50,7 @@ public class TypeEventCommand implements CommandExecutor {
             try {
                 Events.config.reloadConfig();
                 Events.configYML = Events.config.getConfig();
-
+                Events.startScrambleEventAuto();
                 reloadSucces = true;
             } catch(Exception e){
                 e.printStackTrace();
