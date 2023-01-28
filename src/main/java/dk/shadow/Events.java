@@ -85,9 +85,9 @@ public class Events extends JavaPlugin {
 
     public static void startScrambleEventAuto() {
         AutoStartScramble autoStartScramble = new AutoStartScramble();
-        System.out.println("config.getConfig().getBoolean(autoscramblestart.enabled) " + config.getConfig().getBoolean("autoscramblestart.enabled"));
+        //System.out.println("config.getConfig().getBoolean(autoscramblestart.enabled) " + config.getConfig().getBoolean("autoscramblestart.enabled"));
         if (config.getConfig().getBoolean("autoscramblestart.enabled")) {
-            System.out.println("65");
+            //
             autoStartScramble.runTaskTimer(instance, 0L, config.getConfig().getInt("autoscramblestart.delay") * 20L);
         }
     }

@@ -18,4 +18,8 @@ public class Econ {
         return econ.createPlayerAccount(playerName);
     }
 
+    private double getbalance(String playerName) {
+        return econ.getBalance(playerName);
+    }
+
 }
