@@ -37,14 +37,19 @@ public class TypeEventCommand implements CommandExecutor {
             chatListener.startEvent();
             return true;
         } else if (args[0].equalsIgnoreCase("wins")) {
-            OfflinePlayer offlinePlayer = Bukkit.getPlayer(args[1]);
-            sender.sendMessage(Chat.colored("&a" + offlinePlayer.getName() + " &fhar " + "&c" + Wins.getBalance(offlinePlayer) + " &aWins"));
-            Wins.getBalance(offlinePlayer);
+            //Tjekker om man skriver et navn
+            if (args.length == 1) {
+                OfflinePlayer offlinePlayer = Bukkit.getPlayer(args[1]);
+                sender.sendMessage(Chat.colored("&a" + offlinePlayer.getName() + " &fhar " + "&c" + Wins.getBalance(offlinePlayer) + " &aWins"));
+                Wins.getBalance(offlinePlayer);
+            } else {
+                //Ellers sender den senders wins bal
+                sender.sendMessage(Chat.colored("&aDu &fhar " + "&c" + Wins.getBalance(p) + " &aWins"));
+                Wins.getBalance(p);
+            }
             return true;
 
-
-
-        //RELOAD
+            //RELOAD
         } else if (args[0].equalsIgnoreCase("reload")) {
             boolean reloadSucces;
             try {

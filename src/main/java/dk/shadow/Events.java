@@ -5,15 +5,19 @@ import dk.shadow.listeners.ChatListener;
 import dk.shadow.task.AutoStartScramble;
 import dk.shadow.utils.Config;
 
+import dk.shadow.utils.Wins;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -25,6 +29,7 @@ public class Events extends JavaPlugin {
     public static Config config, wins;
     public static FileConfiguration configYML, winsYML;
 
+    private Wins winss;
 
     @Override
     public void onEnable() {
@@ -61,10 +66,19 @@ public class Events extends JavaPlugin {
         startScrambleEventAuto();
         setupEconomy();
 
+        //Loader din wins
+        winss = new Wins();
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            winss.loadBalances(player);
+        }
+
+        winss.saveBalances();
+
     }
     @Override
     public void onDisable() {
         wins.saveConfig();
+        winss.saveBalances();
     }
 
     public static Events getInstance(){

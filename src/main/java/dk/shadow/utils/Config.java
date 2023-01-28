@@ -1,10 +1,12 @@
 package dk.shadow.utils;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -33,10 +35,6 @@ public class Config {
                 this.configFile = new File(this.plugin.getDataFolder(), this.fileName);
             }
         }
-
-        //Auto typeevent start
-
-
         this.config = (FileConfiguration) YamlConfiguration.loadConfiguration(this.configFile);
     }
     public void saveConfig() {
@@ -47,6 +45,11 @@ public class Config {
             this.plugin.getLogger().log(Level.SEVERE, "Could not save config to" + this.configFile, ex);
         }
     }
+    public void loadConfig() throws IOException, InvalidConfigurationException {
+        if (this.config == null || this.configFile == null) return;
+        getConfig().load(this.configFile);
+        getConfig().save(this.configFile);
 
+    }
 
 }

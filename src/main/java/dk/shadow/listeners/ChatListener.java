@@ -3,6 +3,7 @@ package dk.shadow.listeners;
 import dk.shadow.Events;
 import dk.shadow.utils.Chat;
 import dk.shadow.utils.Econ;
+import dk.shadow.utils.Format;
 import dk.shadow.utils.Wins;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,8 +41,9 @@ public class ChatListener implements Listener {
             eventStarted = false;
 
             //Wins
+            Wins wins = new Wins();
             Wins.createAccount(event.getPlayer());
-            Wins.addBalance(event.getPlayer(), 1);
+            wins.addBalance(event.getPlayer(), 1);
             //Economy
             boolean check = Events.configYML.getBoolean("beløning.random.boolean");
             int min = Events.configYML.getInt("beløning.random.penge.min");
@@ -56,14 +58,14 @@ public class ChatListener implements Listener {
                 List<String> messages = Events.config.getConfig().getStringList("vandtScrambleEvent");
                 for (String message : messages) {
                     message = message.replace("%player%", event.getPlayer().getName());
-                    message = message.replace("%penge%", String.valueOf(randomNumber));
+                    message = message.replace("%penge%", Format.formatNum(randomNumber));
                     getServer().broadcastMessage(Chat.colored(message));
                 }
             } else {
                 List<String> messages = Events.config.getConfig().getStringList("vandtScrambleEvent");
                 for (String message : messages) {
                     message = message.replace("%player%", event.getPlayer().getName());
-                    message = message.replace("%penge%", String.valueOf(defaultt));
+                    message = message.replace("%penge%", Format.formatNum(defaultt));
                     getServer().broadcastMessage(Chat.colored(message));
                 }
 
