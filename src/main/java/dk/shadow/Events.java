@@ -1,6 +1,7 @@
 package dk.shadow;
 
 import dk.shadow.commands.TypeEventCommand;
+import dk.shadow.commands.TypeEventTabComplete;
 import dk.shadow.listeners.ChatListener;
 import dk.shadow.task.AutoStartScramble;
 import dk.shadow.utils.Config;
@@ -54,6 +55,7 @@ public class Events extends JavaPlugin {
 
         //Command executers
         getCommand("scrambleEvent").setExecutor(new TypeEventCommand());
+        getCommand("scrambleEvent").setTabCompleter(new TypeEventTabComplete());
         //getCommand("buy").setExecutor(new BuyCommand());
         getServer().getPluginManager().registerEvents(new ChatListener(this), this);
 

@@ -1,5 +1,5 @@
 name: Events
-version: 1.1
+version: 1.2
 authors: [Shad0wsense]
 main: dk.shadow.Events
 depend: [Essentials]

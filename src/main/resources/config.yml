@@ -17,7 +17,7 @@ beløning:
     boolean: true
     penge:
       min: 0
-      max: 30000
+      max: 3000
       default: 300
 
 autoscramblestart:
@@ -25,6 +25,14 @@ autoscramblestart:
   #600 = 10 Min
   delay: 1800
   enabled: true
+
+autoscramblestop:
+  stopbesked: "&8&l[ &a&lSCRAMBLEEVENT &8&l] &cDer var ingen der noget at gætte ordet."
+  stopAfter: 1800
+  enabled: true
+
+forceautoscramblestop:
+  stopbesked: "&8&l[ &a&lSCRAMBLEEVENT &8&l] &cScrambleEventet blev force stopped af %player%."
 
 words:
   - iskoldcool

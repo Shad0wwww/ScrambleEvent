@@ -5,14 +5,13 @@ import dk.shadow.utils.Chat;
 import dk.shadow.utils.Econ;
 import dk.shadow.utils.Format;
 import dk.shadow.utils.Wins;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static org.bukkit.Bukkit.getServer;
 
@@ -29,8 +28,6 @@ public class ChatListener implements Listener {
     public ChatListener(Events plugin) {
         this.plugin = plugin;
     }
-
-
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent event) {
@@ -49,8 +46,6 @@ public class ChatListener implements Listener {
             int min = Events.configYML.getInt("beløning.random.penge.min");
             int max = Events.configYML.getInt("beløning.random.penge.max");
             int defaultt = Events.configYML.getInt("beløning.random.penge.default");
-
-
 
             if (check) {
                 int randomNumber = this.random.nextInt((max - min) + 1) + min;
@@ -86,9 +81,30 @@ public class ChatListener implements Listener {
             message = message.replace("%word%", scrambleWord(wordtype).toLowerCase());
             getServer().broadcastMessage(Chat.colored(message));
         }
+        stopScrambleEvent();
 
 
+    }
 
+    public void stopScrambleEvent() {
+        if (!Events.config.getConfig().getBoolean("autoscramblestop.enabled")) return;
+        if (!eventStarted) return;
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Events.getInstance(), () -> {
+            eventStarted = false;
+            eventWon = false;
+
+            Bukkit.broadcastMessage(Chat.colored(String.valueOf(Events.config.getConfig().get("autoscramblestop.stopbesked"))));
+        }, Events.config.getConfig().getInt("autoscramblestop.stopAfter") * 20L);
+    }
+
+    public void forceStopScrambleEvent(Player player) {
+
+        eventStarted = false;
+        eventWon = false;
+
+        String messages = Events.config.getConfig().getString("forceautoscramblestop.stopbesked");
+        messages = messages.replace("%player%", player.getDisplayName());
+        Bukkit.broadcastMessage(Chat.colored(messages));
 
     }
 
